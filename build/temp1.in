@@ -1,0 +1,18 @@
+#/vis/open OGLSXm
+# e+ 300MeV 
+#/gun/rndm off
+#/vis/viewer/reset
+#/vis/viewer/zoom               1.0
+#/vis/viewer/set/viewpointThetaPhi 180 0
+#/vis/viewer/set/viewpointThetaPhi 90 0
+#     x-axis:red,  y-axis:green,  z-axis:blue
+#/vis/scene/add/axes      0 0 0 1 cm
+
+/run/numberOfThreads 7
+/run/initialize
+#
+#/det/setCompositeDet yes
+#/det/update
+/control/verbose 2
+/run/verbose 2
+/event/verbose 0

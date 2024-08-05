@@ -1,0 +1,28 @@
+   Я сначала использую команду:
+   source ./geant4make.sh
+   У меня сам geant4 расположен в другом месте, поэтому нужен этот файл, чтобы определить 
+   переменные окружения (G4INSTALL например)
+
+   Дальше:
+   cd build 
+   cmake ..
+   make 
+   
+   Командный файл mystart1.com запускает задачу для trapped protons + GCR для протонов, He C O, то есть
+   для всего. В temp1.in задается количество процессов: /run/numberOfThreads 7  
+   Его нужно заменить. 
+   В temp2.in задается количество частиц в одном run: /run/beamOn 500000000
+   Можно изменить, а можно и не менять.
+   В самом mystart1.com задается количество задач:  for j in {1..20}; do
+   Можно заменить от 1 до 100 например.
+   Я запускаю:  nohup nice ./mystart1.com > /dev/null 2>tt &   
+   После каждого рана на директории AnalysisTools появляется и обновляется файл:
+   spectrum_all_protons_He_C_O__min_no_yes_composite_iso_cylinder_L_300cm_0.5-10cm_polyprop.txt
+   Следить за задачей можно:  
+   tail -80 geant4/IMBP/build/ttt |sort -nk 6
+   
+
+   Командный файл mystart2.com запускает задачу для GCR для протонов, He C O только 
+   Вместо temp2.in temp3.in
+   Выходной файл:
+   spectrum_GCR_protons_He_C_O__min_no_yes_composite_iso_cylinder_L_300cm_0.5-10cm_polyprop.tx

@@ -1,0 +1,138 @@
+#/vis/open OGLSXm
+# e+ 300MeV 
+#/gun/rndm off
+#/vis/viewer/reset
+#/vis/viewer/zoom               1.0
+#/vis/viewer/set/viewpointThetaPhi 180 0
+#/vis/viewer/set/viewpointThetaPhi 90 0
+#     x-axis:red,  y-axis:green,  z-axis:blue
+#/vis/scene/add/axes      0 0 0 1 cm
+
+#/run/numberOfThreads 5
+#/run/initialize
+#
+#/det/setCompositeDet yes
+#/det/update
+#/tracking/verbose 1
+#/event/printModulo 1
+
+#/tracking/verbose 1
+
+
+#/gun/particle e+
+#/gun/particle mu+
+#/gun/particle gamma
+#/gun/particle proton
+#/gun/energy 1000 MeV
+#/run/beamOn 1
+#
+# list the existing physics processes
+#############
+/gps/source/intensity 5.11E+07
+#/gps/ang/type surface
+/gps/pos/type Surface
+#/gps/pos/shape Circle
+##/gps/pos/shape Sphere
+/gps/pos/shape Cylinder
+/gps/pos/centre 0 0 0 cm
+#/gps/pos/centre 0 0 -4.2 cm
+#/gps/pos/centre 0 0 -1.01 m
+#/gps/pos/halfx 1.5 cm
+#/gps/pos/halfy 1.5 cm
+#/gps/pos/halfz 175.2 cm
+##/gps/pos/radius 145.2 cm
+##/gps/pos/halfz 2.1 cm
+/gps/pos/halfz 150.5 cm
+/gps/pos/radius 150.1 cm
+##/gps/pos/radius 6.2 m
+#/gps/direction 0 0 1
+/gps/ang/type iso
+##/gps/ang/type cos
+#/gps/position 0 0 -20.1 cm
+/gps/particle proton
+#/gps/particle e-
+#/gps/energy 200 MeV
+#/gps/ene/type User
+#/gps/hist/type energy
+/gps/ene/type Arb
+/gps/hist/type arb
+#/gps/ene/min 1 MeV
+#/gps/ene/max 100 GeV
+##/gps/hist/file ../data/spectrum_trapped_protons_max.txt
+##/gps/hist/file ../data/spectrum_trapped_protons_min_diff.txt
+##/gps/hist/file ../data/spenvis_trapped_protons_2010_368km_min_diff_1Mev.txt
+##/gps/hist/file ../data/spenvis_trapped_protons_2010_368km_52degree_min_diff_1Mev.txt
+##/gps/hist/file ../data/spenvis_trapped_protons_2010_min_diff.txt
+##/gps/hist/file ../data/spectrum_trapped_protons_min_1Mev_diff.txt
+##/gps/hist/file ../data/spectrum_trapped_protons_max_1Mev_diff.txt
+/gps/hist/file ../data/spectrum_trapped_protons_min_diff.txt
+##/gps/hist/file ../data/spectrum_GCR_minimum_H_diff.txt
+##/gps/hist/file ../data/spenvis_trapped_protons_min.txt
+/gps/hist/inter Lin
+
+/gps/source/add 4.89E+04
+/gps/pos/type Surface
+/gps/pos/shape Cylinder
+/gps/pos/centre 0 0 0 cm
+/gps/pos/halfz 150.5 cm
+/gps/pos/radius 150.1 cm
+##/gps/direction 0 0 1
+/gps/ang/type iso
+/gps/particle proton
+/gps/ene/type Arb
+/gps/hist/type arb
+/gps/hist/file ../data/spectrum_GCR_minimum_H_diff.txt
+/gps/hist/inter Lin
+
+/gps/source/add 7.01E+03
+/gps/pos/type Surface
+/gps/pos/shape Cylinder
+/gps/pos/centre 0 0 0 cm
+/gps/pos/halfz 150.5 cm
+/gps/pos/radius 150.1 cm
+##/gps/direction 0 0 1
+/gps/ang/type iso
+/gps/particle ion
+/gps/ion 2 4 2
+/gps/ene/type Arb
+/gps/hist/type arb
+/gps/hist/file ../data/spectrum_GCR_minimum_He_diff.txt
+/gps/hist/inter Lin
+
+/gps/source/add 1.98E+02
+/gps/pos/type Surface
+/gps/pos/shape Cylinder
+/gps/pos/centre 0 0 0 cm
+/gps/pos/halfz 150.5 cm
+/gps/pos/radius 150.1 cm
+##/gps/direction 0 0 1
+/gps/ang/type iso
+/gps/particle ion
+/gps/ion 6 12 6
+/gps/ene/type Arb
+/gps/hist/type arb
+/gps/hist/file ../data/spectrum_GCR_minimum_C_diff.txt
+/gps/hist/inter Lin
+
+/gps/source/add 1.90E+02
+/gps/pos/type Surface
+/gps/pos/shape Cylinder
+/gps/pos/centre 0 0 0 cm
+/gps/pos/halfz 150.5 cm
+/gps/pos/radius 150.1 cm
+##/gps/direction 0 0 1
+/gps/ang/type iso
+/gps/particle ion
+/gps/ion 8 16 8
+/gps/ene/type Arb
+/gps/hist/type arb
+/gps/hist/file ../data/spectrum_GCR_minimum_O_diff.txt
+/gps/hist/inter Lin
+
+
+
+/run/beamOn 500000000
+##/run/beamOn 15000000
+#/run/beamOn 10000000
+#/process/list
+#

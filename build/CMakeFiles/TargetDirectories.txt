@@ -1,0 +1,8 @@
+/home/terkulov/geant4/IMBP/build/CMakeFiles/install/local.dir
+/home/terkulov/geant4/IMBP/build/CMakeFiles/install/strip.dir
+/home/terkulov/geant4/IMBP/build/CMakeFiles/B1.dir
+/home/terkulov/geant4/IMBP/build/CMakeFiles/install.dir
+/home/terkulov/geant4/IMBP/build/CMakeFiles/RunGun.dir
+/home/terkulov/geant4/IMBP/build/CMakeFiles/edit_cache.dir
+/home/terkulov/geant4/IMBP/build/CMakeFiles/rebuild_cache.dir
+/home/terkulov/geant4/IMBP/build/CMakeFiles/list_install_components.dir

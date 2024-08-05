@@ -1,0 +1,65 @@
+#/vis/open OGLSXm
+# e+ 300MeV 
+#/gun/rndm off
+#/vis/viewer/reset
+#/vis/viewer/zoom               1.0
+#/vis/viewer/set/viewpointThetaPhi 180 0
+#/vis/viewer/set/viewpointThetaPhi 90 0
+#     x-axis:red,  y-axis:green,  z-axis:blue
+#/vis/scene/add/axes      0 0 0 1 cm
+
+#/run/numberOfThreads 1
+/run/initialize
+#
+#/det/setCompositeDet yes
+#/det/update
+/control/verbose 2
+/run/verbose 2
+/event/verbose 0
+/random/setSeeds 1 1
+#/tracking/verbose 1
+#/event/printModulo 1
+
+#/tracking/verbose 1
+
+
+#/gun/particle e+
+#/gun/particle mu+
+#/gun/particle gamma
+#/gun/particle proton
+#/gun/energy 1000 MeV
+#/run/beamOn 1
+#
+# list the existing physics processes
+#############
+##/gps/source/intensity 0.974311
+#/gps/ang/type surface
+/gps/pos/type Surface
+#/gps/pos/shape Circle
+/gps/pos/shape Sphere
+#/gps/pos/centre 0 0 -4.2 cm
+#/gps/pos/halfx 1.5 cm
+#/gps/pos/halfy 1.5 cm
+/gps/pos/radius 1.05 m
+##/gps/direction 0 0 1
+/gps/ang/type iso
+#/gps/position 0 0 -20.1 cm
+/gps/particle proton
+#/gps/particle e-
+#/gps/energy 100 MeV
+#/gps/ene/type User
+#/gps/hist/type energy
+/gps/ene/type Arb
+/gps/hist/type arb
+#/gps/ene/min 1 MeV
+#/gps/ene/max 100 GeV
+##/gps/hist/file ../data/spectrum_trapped_protons_max.txt
+##/gps/hist/file ../data/spectrum_trapped_protons_min.txt
+/gps/hist/file ../data/spenvis_trapped_protons_min.txt
+/gps/hist/inter Lin
+
+
+
+/run/beamOn 1000000
+#/process/list
+#

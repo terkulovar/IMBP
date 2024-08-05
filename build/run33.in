@@ -1,0 +1,94 @@
+#/vis/open OGLSXm
+# e+ 300MeV 
+#/gun/rndm off
+#/vis/viewer/reset
+#/vis/viewer/zoom               1.0
+#/vis/viewer/set/viewpointThetaPhi 180 0
+#/vis/viewer/set/viewpointThetaPhi 90 0
+#     x-axis:red,  y-axis:green,  z-axis:blue
+#/vis/scene/add/axes      0 0 0 1 cm
+
+/run/numberOfThreads 2
+/run/initialize
+#
+#/det/setCompositeDet yes
+#/det/update
+/control/verbose 2
+/run/verbose 2
+/event/verbose 0
+/random/setSeeds 1 1
+#/random/setSeeds 1 1
+/det/setWallZ 7.92886 mm
+/det/update
+##/gps/source/intensity 0.974311
+##
+##/gps/ang/type planar
+/gps/pos/type Plane
+##/gps/pos/type Volume
+#/gps/pos/shape Circle
+/gps/pos/shape Square
+##/gps/pos/shape Para
+##/gps/pos/centre 0 0 -3.91 cm
+##/gps/pos/centre 0 0 -2.5 cm  #for 1.5g/cm2
+##/gps/pos/centre 0 0 -2.65 cm  #for 1.5g/cm2
+##/gps/pos/centre 0 0 -7.0 cm  #for 1.5g/cm2
+/gps/pos/centre 0 0 -15.0 cm  #for 1.5g/cm2
+##/gps/pos/centre 0 0 -13.3 cm  #for 1.5g/cm2 and Vladimir
+##/gps/pos/centre 0 0 -1.96 cm  #for 1.5g/cm2 and Fe
+##/gps/pos/centre 0 0 -4.09 cm
+/gps/pos/halfx 2.5 cm
+/gps/pos/halfy 2.5 cm
+##/gps/pos/halfz 35 cm
+#/gps/pos/radius 1 cm
+/gps/direction 0 0 1
+##/gps/ang/type iso
+##/gps/position 0 0 -11.6 cm
+##/gps/particle ion
+##/gps/ion 2 4 2
+/gps/particle proton
+#/gps/particle e-
+#/gps/energy 10 MeV
+#/gps/ene/type User
+#/gps/hist/type energy
+/gps/ene/type Arb
+/gps/hist/type arb
+#/gps/ene/min 1 MeV
+#/gps/ene/max 100 GeV
+##/gps/hist/file ../data/spectrum_trapped_protons_max.txt
+##/gps/hist/file ../data/spectrum_trapped_protons_min_diff.txt
+##/gps/hist/file ../data/spenvis_trapped_protons_2010_368km_min_new_diff.txt
+##/gps/hist/file ../data/spenvis_trapped_protons_2010_368km_52degree_min_diff_1Mev.txt
+##/gps/hist/file ../data/spenvis_GCR_min_368km_H_diff.txt
+##/gps/hist/file ../data/spenvis_GCR_min_368km_He_diff.txt
+##/gps/hist/file ../data/spectrum_trapped_protons_min_10Mev_diff.txt
+##/gps/hist/file ../data/spectrum_trapped_protons_min_1Mev_diff.txt
+/gps/hist/file ../data/spectrum_GCR_minimum_He_diff.txt
+##/gps/hist/file ../data/spectrum_GCR_minimum_He_diff.txt
+##/gps/hist/file ../data/spenvis_trapped_protons_min.txt
+/gps/hist/inter Lin
+
+##/gps/hist/type biasx
+##/gps/hist/point 5.55761 0.333
+##/gps/hist/point 6.22453 0.25
+##/gps/hist/file ../data/bias.txt
+##/gps/hist/inter Lin
+
+
+##/gps/source/add 0.0224566
+##/gps/ang/type planar
+##/gps/pos/type Plane
+##/gps/pos/shape Square
+##/gps/pos/centre 0 0 -8. cm
+##/gps/pos/halfx 0.5 cm
+##/gps/pos/halfy 0.5 cm
+##/gps/direction 0 0 1
+##/gps/particle proton
+##/gps/ene/type Arb
+##/gps/hist/type arb
+##/gps/hist/file ../data/spectrum_GCR_maximum_H.txt
+##/gps/hist/inter Lin
+
+
+/run/beamOn 150000
+#/process/list
+#

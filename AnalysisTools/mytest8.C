@@ -50,7 +50,7 @@ void mytest8()
 // Double_t square = 9.;
 // Double_t square = 4.0*pi*100.0*100.0;
 // Double_t square = 4.0*pi*620.*620.;
- Double_t square = 2.0*pi*150.*(300.0+150.0)/2.0;
+ Double_t square = 2.0*pi*300.*(1200.0+300.0)/2.0;
 // Double_t square = 500.*500.*1.;
  Double_t spectrum_trapped_protons_max  = 2.27e+07;
  Double_t spectrum_trapped_protons_min  = 5.11e+07;
@@ -237,7 +237,7 @@ void mytest8()
  ofstream *out;
 // out = new ofstream("spectrum_GCR_H_min_composite_water.txt", ios::app);
 // out = new ofstream("spectrum_trapped_protons_min_composite_water_sphere_R_1m.txt", ios::app);
- out = new ofstream("spectrum_all_protons_He_C_O__min_no_yes_composite_iso_cylinder_L_300cm_0.5-10cm_polyprop.txt", ios::app);
+ out = new ofstream("spectrum_all_protons_He_C_O__min_no_yes_composite_iso_cylinder_L_1200cm_0.5-10cm_polyprop.txt", ios::app);
  *out<<d0<<" "<<z0<<" "<<ed0<<" "<<d1<<" "<<z1<<" "<<ed1<<" "<<d2<<" "<<z2<<" "<<ed2<<" "<<d3<<" "<<z3<<" "<<ed3<<" "
  <<d4<<" "<<z4<<" "<<ed4<<" "<<d5<<" "<<z5<<" "<<ed5<<" "<<d6<<" "<<z6<<" "<<ed6<<" "<<d7<<" "<<z7<<" "<<ed7<<" "
  <<" "<<d8<<" "<<z8<<" "<<ed8<<" "" "<<d9<<" "<<z9<<" "<<ed9<<" "<<

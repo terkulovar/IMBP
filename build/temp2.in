@@ -42,8 +42,8 @@
 #/gps/pos/halfz 175.2 cm
 ##/gps/pos/radius 145.2 cm
 ##/gps/pos/halfz 2.1 cm
-/gps/pos/halfz 150.5 cm
-/gps/pos/radius 150.1 cm
+/gps/pos/halfz 600.5 cm
+/gps/pos/radius 300.1 cm
 ##/gps/pos/radius 6.2 m
 #/gps/direction 0 0 1
 /gps/ang/type iso
@@ -74,8 +74,8 @@
 /gps/pos/type Surface
 /gps/pos/shape Cylinder
 /gps/pos/centre 0 0 0 cm
-/gps/pos/halfz 150.5 cm
-/gps/pos/radius 150.1 cm
+/gps/pos/halfz 600.5 cm
+/gps/pos/radius 300.1 cm
 ##/gps/direction 0 0 1
 /gps/ang/type iso
 /gps/particle proton
@@ -88,8 +88,8 @@
 /gps/pos/type Surface
 /gps/pos/shape Cylinder
 /gps/pos/centre 0 0 0 cm
-/gps/pos/halfz 150.5 cm
-/gps/pos/radius 150.1 cm
+/gps/pos/halfz 600.5 cm
+/gps/pos/radius 300.1 cm
 ##/gps/direction 0 0 1
 /gps/ang/type iso
 /gps/particle ion
@@ -103,8 +103,8 @@
 /gps/pos/type Surface
 /gps/pos/shape Cylinder
 /gps/pos/centre 0 0 0 cm
-/gps/pos/halfz 150.5 cm
-/gps/pos/radius 150.1 cm
+/gps/pos/halfz 600.5 cm
+/gps/pos/radius 300.1 cm
 ##/gps/direction 0 0 1
 /gps/ang/type iso
 /gps/particle ion
@@ -118,8 +118,8 @@
 /gps/pos/type Surface
 /gps/pos/shape Cylinder
 /gps/pos/centre 0 0 0 cm
-/gps/pos/halfz 150.5 cm
-/gps/pos/radius 150.1 cm
+/gps/pos/halfz 600.5 cm
+/gps/pos/radius 300.1 cm
 ##/gps/direction 0 0 1
 /gps/ang/type iso
 /gps/particle ion
@@ -131,7 +131,7 @@
 
 
 
-/run/beamOn 500000000
+/run/beamOn 1500000000
 ##/run/beamOn 15000000
 #/run/beamOn 10000000
 #/process/list

@@ -106,9 +106,9 @@ DetectorConstruction::DetectorConstruction()
   gap_sizeZ2 = 2.*cm;
 //  aluminium_R = 1.0*m;
 //  aluminium_R = 1.45*m;  // for cylinder geometry
-  aluminium_R = 1.5*m;  // for cylinder geometry
+  aluminium_R = 3.0*m;  // for cylinder geometry
 //  aluminium_lengthZ = 350.*cm;
-  aluminium_lengthZ = 300.*cm;
+  aluminium_lengthZ = 1200.*cm;
   aluminium_positionZ = composite_sizeZ+gap_sizeZ+polyprop_sizeZ+0.5*alum_sizeZ;
   fCompDet = "yes";
   ComputeCalorParameters();

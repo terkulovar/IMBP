@@ -248,12 +248,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   cout<<"!!!!!!! polyprop thickness "<<(polyprop_Rmax-polyprop_Rmin)/cm<<endl;
   G4Tubs* solidPolyprop =
     new G4Tubs("Polyprop",                       //its name
-       polyprop_Rmin, polyprop_Rmax, (aluminium_lengthZ/4.0-polyprop_sizeZ), 0, CLHEP::twopi); //its size
+       polyprop_Rmin, polyprop_Rmax, (aluminium_lengthZ/4.0-polyprop_sizeZ/2.), 0, CLHEP::twopi); //its size
   logic_polyprop = new G4LogicalVolume(solidPolyprop,        //its solid
                                        polyprop_mat,   //its material
                                        "Polyprop");       //its name
   physic_polyprop = new G4PVPlacement(0,                           //rotation
-                        G4ThreeVector(0,0,-(aluminium_lengthZ/4.0-polyprop_sizeZ)),
+                        G4ThreeVector(0,0,-(aluminium_lengthZ/4.0-polyprop_sizeZ/2.)),
                         logic_polyprop,                            //its logical volume
                         "Polyprop",                                       //its name
                         logicWorld,                           //its mother  volume
@@ -281,12 +281,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 //  polyprop_Rmax = alum_Rmin;
   G4Tubs* solidPolyprop1 =
     new G4Tubs("Polyprop1",                       //its name
-       polyprop_Rmin, polyprop_Rmax, (aluminium_lengthZ/4.0-polyprop_sizeZ1), 0, CLHEP::twopi); //its size
+       polyprop_Rmin, polyprop_Rmax, (aluminium_lengthZ/4.0-polyprop_sizeZ1/2.), 0, CLHEP::twopi); //its size
   logic_polyprop1 = new G4LogicalVolume(solidPolyprop1,        //its solid
                                        polyprop_mat,   //its material
                                        "Polyprop1");       //its name
   physic_polyprop1 = new G4PVPlacement(0,                           //rotation
-                        G4ThreeVector(0,0,(aluminium_lengthZ/4.0-polyprop_sizeZ1)),
+                        G4ThreeVector(0,0,(aluminium_lengthZ/4.0-polyprop_sizeZ1/2.)),
                         logic_polyprop1,                            //its logical volume
                         "Polyprop1",                                       //its name
                         logicWorld,                           //its mother  volume

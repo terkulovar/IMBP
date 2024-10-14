@@ -72,8 +72,8 @@ DetectorConstruction::DetectorConstruction()
 //  alum_sizeZ = 0.55*cm;  // from article
 //!!!!!!!!!!!! change aluminium on glass illuminator
 //  alum_sizeZ = 2.08*cm;
-//  composite_sizeZ = 18.5*cm;
-  composite_sizeZ = 2.0*cm;
+  composite_sizeZ = 16.5*cm;
+//  composite_sizeZ = 2.0*cm;
   composite_thickness = 1.*cm;
   composite_Rmin = 7.7*cm;
   composite_Rmax = composite_Rmin+composite_thickness;

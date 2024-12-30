@@ -134,13 +134,22 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
 //   const G4GeneralParticleSource* particleGun = generatorAction->GetParticleGun();
 //   Energy = particleGun->GetParticleEnergy();
 //  }
+  G4double xi, yi, zi, xi_post, yi_post, zi_post;
+  xi = step->GetPreStepPoint()->GetPosition().x();
+  yi = step->GetPreStepPoint()->GetPosition().y();
+  zi=  step->GetPreStepPoint()->GetPosition().z();
+  xi_post = step->GetPostStepPoint()->GetPosition().x();
+  yi_post = step->GetPostStepPoint()->GetPosition().y();
+  zi_post = step->GetPostStepPoint()->GetPosition().z();
+  G4double mystep = sqrt((xi_post-xi)*(xi_post-xi)+(yi_post-yi)*(yi_post-yi)+(zi_post-zi)*(zi_post-zi));
   const G4Run* aRun = G4RunManager::GetRunManager()->GetCurrentRun();
 //   G4int nevents = aRun->GetNumberOfEvent();
   G4int nevents = aRun->GetNumberOfEventToBeProcessed();
 //  cout<<"events "<<nevents<<endl;
   G4double mass;
   G4double QF;
-  G4double L = (edepStep/CLHEP::MeV)/(stepl/cm);
+//  G4double L = (edepStep/CLHEP::MeV)/(stepl/cm);
+  G4double L = (edepStep/CLHEP::MeV)/(mystep/cm);
   if ( L < 100 ) QF = 1;
   else if ( L > 100 && L <1000 ) QF = 0.32*L/10. - 2.2;
   else if (L > 1000 ) QF = 300*pow(L/10.,-0.5);
@@ -155,10 +164,10 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
 //  G4double RW = detConstruction->GetWaterR();
 //   cout<<"sample XY XY cm XY mm Z "<<XY<<" "<<XY/cm<<" "<<XY/mm<<" "<<detector->GetSampleZ()/cm<<endl;
 
-  if ( volume == detector->GetEye() )
-  {
-   mass = volume->GetLogicalVolume()->GetMass();
-   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
+ // if ( volume == detector->GetEye() )
+ // {
+ //  mass = volume->GetLogicalVolume()->GetMass();
+ //  G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
 //   man->FillH1(0,vector.z()/cm,edep1/nevents);
 //   if ( stepl > 1.e-10 )
 //    man->FillH1(1,vector.z()/cm,edep1*QF/nevents);
@@ -166,23 +175,23 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
 //    man->FillH1(2,kinetic_energy);
 //   if ( name == "neutron" )
 //    man->FillH1(13,kinetic_energy);
-   man->FillNtupleIColumn(1,0,evId);
-   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
-   man->FillNtupleSColumn(1,2,volume->GetName());
-   man->FillNtupleSColumn(1,3,name);
-   man->FillNtupleDColumn(1,4,vector.z()/cm);
-   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
-   man->FillNtupleDColumn(1,6,edep1/nevents);
-   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
-   man->AddNtupleRow(1);
+//   man->FillNtupleIColumn(1,0,evId);
+//   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
+//   man->FillNtupleSColumn(1,2,volume->GetName());
+//   man->FillNtupleSColumn(1,3,name);
+//   man->FillNtupleDColumn(1,4,vector.z()/cm);
+//   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
+//   man->FillNtupleDColumn(1,6,edep1/nevents);
+//   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
+//   man->AddNtupleRow(1);
 //   fEventAction->AddEdep( edep1, edep1*QF, volume->GetName() );
 //   cout<<"z z edep edep name mass QF name mass "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
 //   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<" "<<nevents<<endl;
-  }
-  if ( volume == detector->GetTestis() )
-  {
-   mass = volume->GetLogicalVolume()->GetMass();
-   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
+//  }
+//  if ( volume == detector->GetTestis() )
+//  {
+//   mass = volume->GetLogicalVolume()->GetMass();
+//   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
 //   man->FillH1(0,vector.z()/cm,edep1/nevents);
 //   if ( stepl > 1.e-10 )
 //    man->FillH1(1,vector.z()/cm,edep1*QF/nevents);
@@ -190,22 +199,22 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
 //    man->FillH1(3,kinetic_energy);
 //   if ( name == "neutron" )
 //    man->FillH1(14,kinetic_energy);
-   man->FillNtupleIColumn(1,0,evId);
-   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
-   man->FillNtupleSColumn(1,2,volume->GetName());
-   man->FillNtupleSColumn(1,3,name);
-   man->FillNtupleDColumn(1,4,vector.z()/cm);
-   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
-   man->FillNtupleDColumn(1,6,edep1/nevents);
-   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
-   man->AddNtupleRow(1);
+//   man->FillNtupleIColumn(1,0,evId);
+//   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
+//   man->FillNtupleSColumn(1,2,volume->GetName());
+//   man->FillNtupleSColumn(1,3,name);
+//   man->FillNtupleDColumn(1,4,vector.z()/cm);
+//   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
+//   man->FillNtupleDColumn(1,6,edep1/nevents);
+//   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
+//   man->AddNtupleRow(1);
 //   cout<<"z z edep edep name mass QF "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
 //   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<endl;
-  }
-  if ( volume == detector->GetSpleen() )
-  {
-   mass = volume->GetLogicalVolume()->GetMass();
-   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
+//  }
+//  if ( volume == detector->GetSpleen() )
+//  {
+//   mass = volume->GetLogicalVolume()->GetMass();
+//   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
 //   man->FillH1(0,vector.z()/cm,edep1/nevents);
 //   if ( stepl > 1.e-10 )
 //    man->FillH1(1,vector.z()/cm,edep1*QF/nevents);
@@ -213,22 +222,22 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
 //    man->FillH1(4,kinetic_energy);
 //   if ( name == "neutron" )
 //    man->FillH1(15,kinetic_energy);
-   man->FillNtupleIColumn(1,0,evId);
-   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
-   man->FillNtupleSColumn(1,2,volume->GetName());
-   man->FillNtupleSColumn(1,3,name);
-   man->FillNtupleDColumn(1,4,vector.z()/cm);
-   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
-   man->FillNtupleDColumn(1,6,edep1/nevents);
-   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
-   man->AddNtupleRow(1);
+//   man->FillNtupleIColumn(1,0,evId);
+//   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
+//   man->FillNtupleSColumn(1,2,volume->GetName());
+//   man->FillNtupleSColumn(1,3,name);
+//   man->FillNtupleDColumn(1,4,vector.z()/cm);
+//   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
+//   man->FillNtupleDColumn(1,6,edep1/nevents);
+//   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
+//   man->AddNtupleRow(1);
 //   cout<<"z z edep edep name mass QF "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
 //   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<endl;
-  }
-  if ( volume == detector->GetBrain() )
-  {
-   mass = volume->GetLogicalVolume()->GetMass();
-   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
+//  }
+//  if ( volume == detector->GetBrain() )
+//  {
+//   mass = volume->GetLogicalVolume()->GetMass();
+//   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
 //   man->FillH1(0,vector.z()/cm,edep1/nevents);
 //   if ( stepl > 1.e-10 )
 //    man->FillH1(1,vector.z()/cm,edep1*QF/nevents);
@@ -236,22 +245,22 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
 //    man->FillH1(5,kinetic_energy);
 //   if ( name == "neutron" )
 //    man->FillH1(16,kinetic_energy);
-   man->FillNtupleIColumn(1,0,evId);
-   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
-   man->FillNtupleSColumn(1,2,volume->GetName());
-   man->FillNtupleSColumn(1,3,name);
-   man->FillNtupleDColumn(1,4,vector.z()/cm);
-   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
-   man->FillNtupleDColumn(1,6,edep1/nevents);
-   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
-   man->AddNtupleRow(1);
+//   man->FillNtupleIColumn(1,0,evId);
+//   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
+//   man->FillNtupleSColumn(1,2,volume->GetName());
+//   man->FillNtupleSColumn(1,3,name);
+//   man->FillNtupleDColumn(1,4,vector.z()/cm);
+//   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
+//   man->FillNtupleDColumn(1,6,edep1/nevents);
+//   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
+//   man->AddNtupleRow(1);
 //   cout<<"z z edep edep name mass QF "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
 //   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<endl;
-  }
-  if ( volume == detector->GetStomach() )
-  {
-   mass = volume->GetLogicalVolume()->GetMass();
-   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
+//  }
+//  if ( volume == detector->GetStomach() )
+//  {
+//   mass = volume->GetLogicalVolume()->GetMass();
+//   G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
 //   man->FillH1(0,vector.z()/cm,edep1/nevents);
 //   if ( stepl > 1.e-10 )
 //    man->FillH1(1,vector.z()/cm,edep1*QF/nevents);
@@ -259,33 +268,33 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
 //    man->FillH1(6,kinetic_energy);
 //   if ( name == "neutron" )
 //    man->FillH1(17,kinetic_energy);
-   man->FillNtupleIColumn(1,0,evId);
-   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
-   man->FillNtupleSColumn(1,2,volume->GetName());
-   man->FillNtupleSColumn(1,3,name);
-   man->FillNtupleDColumn(1,4,vector.z()/cm);
-   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
-   man->FillNtupleDColumn(1,6,edep1/nevents);
-   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
-   man->AddNtupleRow(1);
+//   man->FillNtupleIColumn(1,0,evId);
+//   man->FillNtupleDColumn(1,1,(Energy/CLHEP::MeV)/nevents);
+//   man->FillNtupleSColumn(1,2,volume->GetName());
+//   man->FillNtupleSColumn(1,3,name);
+//   man->FillNtupleDColumn(1,4,vector.z()/cm);
+//   man->FillNtupleDColumn(1,5,(edepStep/CLHEP::MeV)/nevents);
+//   man->FillNtupleDColumn(1,6,edep1/nevents);
+//   man->FillNtupleDColumn(1,7,edep1*QF/nevents);
+//   man->AddNtupleRow(1);
 //   cout<<"z z edep edep name mass QF "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
 //   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<endl;
-  }
-  if ( volume==detector->GetEye() || volume==detector->GetTestis() || volume==detector->GetSpleen() 
-       || volume==detector->GetBrain() || volume==detector->GetStomach() || volume==detector->GetWater() )
-  {
+//  }
+//  if ( volume==detector->GetEye() || volume==detector->GetTestis() || volume==detector->GetSpleen() 
+//       || volume==detector->GetBrain() || volume==detector->GetStomach() || volume==detector->GetWater() )
+//  {
 //   cout<<"z z edep edep name mass QF "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
 //   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<endl;
 //   fEventAction->AddEdep(Energy/CLHEP::MeV, volume->GetName() );
-   man->FillNtupleDColumn(3,0,kinetic_energy/nevents);
-   man->FillNtupleSColumn(3,1,name);
-   man->FillNtupleDColumn(3,2,vector.z()/mm);
-   man->FillNtupleDColumn(3,3,(edepStep/CLHEP::MeV)/nevents);
-   man->FillNtupleDColumn(3,4,stepl/mm);
+//   man->FillNtupleDColumn(3,0,kinetic_energy/nevents);
+//   man->FillNtupleSColumn(3,1,name);
+//   man->FillNtupleDColumn(3,2,vector.z()/mm);
+//   man->FillNtupleDColumn(3,3,(edepStep/CLHEP::MeV)/nevents);
+//   man->FillNtupleDColumn(3,4,stepl/mm);
 //   man->AddNtupleRow(3);
 //   if ( name == "proton" )
-   if ( stepl > 1.e-10 )
-    man->FillH1(1,vector.z()/mm,(edepStep/CLHEP::MeV)/(stepl/mm)/nevents);
+//   if ( stepl > 1.e-10 )
+//    man->FillH1(1,vector.z()/mm,(edepStep/CLHEP::MeV)/(stepl/mm)/nevents);
 //    man->FillH1(1,vector.z()/mm,(edepStep/CLHEP::MeV)/nevents);
 //   if ( name == "neutron" )
 //   {
@@ -293,7 +302,7 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
 //    <<name<<" "<<(edepStep/CLHEP::MeV)/(stepl/mm)<<" "<<volume->GetName()<<endl;
 //    man->FillH1(2,vector.z()/mm,(edepStep/CLHEP::MeV)/(stepl/mm));
 //   }
-  }  
+//  }  
 //  if ( volume == detector->GetLiF() )
   if ( strcmp(volume->GetName(),"LiF")==0 || strcmp(volume->GetName(),"LiF1")==0 || strcmp(volume->GetName(),"LiF2")==0
      || strcmp(volume->GetName(),"LiF3")==0 || strcmp(volume->GetName(),"LiF4")==0 || strcmp(volume->GetName(),"LiF5")==0
@@ -311,6 +320,11 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
    man->FillNtupleDColumn(1,6,edep1/nevents);
    man->FillNtupleDColumn(1,7,edep1*QF/nevents);
    man->FillNtupleDColumn(1,8,cos(my_pos.angle(my_dir)));
+  //   man->FillNtupleDColumn(1,9,stepl/cm);
+   man->FillNtupleDColumn(1,9,mystep/cm);
+   man->FillNtupleDColumn(1,10,L);
+   man->FillNtupleDColumn(1,11,QF);
+   man->FillNtupleIColumn(1,12,particleGun->GetCurrentSourceIndex());
    man->AddNtupleRow(1);
    fEventAction->AddEdep( edep1, edep1*QF, volume->GetName() );
 //   if ( edep1 > 1 )

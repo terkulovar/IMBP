@@ -109,8 +109,8 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
   G4int nevents = aRun->GetNumberOfEventToBeProcessed();
   G4double mass;
   G4double QF;
-//  G4double L = (edepStep/CLHEP::MeV)/(stepl/cm);
-  G4double L = (edepStep/CLHEP::MeV)/(mystep/cm);
+  G4double L = (edepStep/CLHEP::MeV)/(stepl/cm);
+//  G4double L = (edepStep/CLHEP::MeV)/(mystep/cm);
   if ( L < 100 ) QF = 1;
   else if ( L > 100 && L <1000 ) QF = 0.32*L/10. - 2.2;
   else if (L > 1000 ) QF = 300*pow(L/10.,-0.5);
@@ -161,16 +161,16 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
    man->FillNtupleDColumn(1,6,edep1/nevents);
    man->FillNtupleDColumn(1,7,edep1*QF/nevents);
    man->FillNtupleDColumn(1,8,cos(my_pos.angle(my_dir)));
-  //   man->FillNtupleDColumn(1,9,stepl/cm);
-   man->FillNtupleDColumn(1,9,mystep/cm);
+   man->FillNtupleDColumn(1,9,stepl/cm);
+//   man->FillNtupleDColumn(1,9,mystep/cm);
    man->FillNtupleDColumn(1,10,L);
    man->FillNtupleDColumn(1,11,QF);
    man->FillNtupleIColumn(1,12,particleGun->GetCurrentSourceIndex());
    man->AddNtupleRow(1);
    fEventAction->AddEdep( edep1, edep1*QF, volume->GetName() );
 //   if ( edep1 > 1 )
-   cout<<"z z edep edep name mass QF dose "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
-   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<" "<<edep1<<endl;
+//   cout<<"z z edep edep name mass QF dose "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
+//   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<" "<<edep1<<endl;
 //   cerr<<"z z edep edep name mass QF dose "<<vector.z()<<" "<<vector.z()/cm<<" "<<edepStep<<" "<<edepStep/CLHEP::MeV<<" "
 //   <<name<<" "<<mass/kg<<" "<<QF<<" "<<volume->GetName()<<" "<<edep1<<endl;
   }

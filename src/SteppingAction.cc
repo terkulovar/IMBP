@@ -123,6 +123,33 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
      || strcmp(volume->GetName(),"LiF6")==0 || strcmp(volume->GetName(),"LiF7")==0 || strcmp(volume->GetName(),"LiF8")==0
      || strcmp(volume->GetName(),"LiF9")==0 )
   {
+//   if ( name != "gamma" && name != "neutron" )
+   {
+//    cout<<"!!!!!!!!particle "<<name<<endl;
+    const std::vector<G4Track*>* STracks = step->GetSecondary();
+//    cout<<"!!!!!! sec size "<<STracks->size()<<endl;
+    if ( STracks->size() > 0 )
+    {
+     for ( int i = 0; i < STracks->size(); i++ )
+     {
+      G4Track* t1 = STracks->at(i);
+      G4String name2 = t1->GetDefinition()->GetParticleName();
+      if ( name2 == "e-" )
+      {
+       if ( t1->GetTrackStatus() != fStopAndKill )
+       {
+        edepStep += t1->GetKineticEnergy();
+        t1->SetTrackStatus(fStopAndKill);
+//        cout<<"sec i energy name  "<<i<<" "<<t1->GetKineticEnergy()<<" "<<name2<<endl;
+       }
+      }
+     }
+    }
+    L = (edepStep/CLHEP::MeV)/(stepl/cm);
+    if ( L < 100 ) QF = 1;
+    else if ( L > 100 && L <1000 ) QF = 0.32*L/10. - 2.2;
+    else if (L > 1000 ) QF = 300*pow(L/10.,-0.5);
+   } 
    mass = volume->GetLogicalVolume()->GetMass();
    G4double edep1 = ((edepStep/CLHEP::eV)*e_SI)/(mass/kg);
    man->FillNtupleIColumn(1,0,evId);
